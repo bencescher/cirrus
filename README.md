@@ -32,3 +32,9 @@ Weather data for each city is stored in a database and will only be updated with
 The data is visualized through 'weather cards' dynamically representing the weather conditions, such as:
 - background image
 - weather icon
+
+ **Example screenshots**
+
+![screenshot1](./screenshots/home.jpeg)
+![screenshot2](./screenshots/rainy.jpeg)
+![screenshot3](./screenshots/snowy.jpeg)
