@@ -1,0 +1,6 @@
+// center absolute element horizontally
+@mixin centerHorizontal {
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 0%);
+}

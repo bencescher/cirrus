@@ -1,0 +1,15 @@
+.home {
+  background-image: 
+  linear-gradient(to top left, rgba(145, 234, 228, .7), rgba(134, 168, 231, .7), rgba(127, 127, 213, .7)),
+  url(@/../../images/background.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+
+  & h1 {
+    padding-bottom: 8rem;
+    padding-top: 10rem;
+    text-align: center;
+  }
+}

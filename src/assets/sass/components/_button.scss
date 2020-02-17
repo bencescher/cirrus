@@ -1,0 +1,73 @@
+.btn {
+  transition: all .3s ease;
+
+  &, &:link, &:visited {
+    background-color: transparent;
+    border-radius: $n-btn-borderradius;
+    cursor: pointer;
+    font-size: 1.8rem;
+    padding: 1rem;
+  }
+
+  &:hover {
+    box-shadow: 0 2px 4px rgba($c-shadow,0.2);
+  }
+
+  &:active, &:focus {
+    box-shadow: none;
+    outline: none;
+    transform: translateY(0);
+  }
+}
+
+.btn-light {
+  border: .2rem solid rgba($c-light, .6);
+  color: $c-light;
+
+  &:hover {
+    background-color: rgba($c-light, .2);
+  }
+}
+
+.btn-back {
+  border-radius: 50%;
+  bottom: 4rem;
+  font-size: 3rem;
+  height: 6rem;
+  position: absolute;
+  right: 4rem;
+  width: 6rem;
+}
+
+.btn-flipcard {
+
+  &, &:link, &:visited {
+    background: transparent;
+    border: none;
+    color: $c-light;
+    font-size: 2.4rem;
+    position: absolute;
+    right: 3rem;
+    visibility: visible;
+  }
+  
+  &:active, &:focus {
+    outline: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .btn-back {
+    font-size: 2.2rem;
+    height: 4.8rem;
+    position: relative;
+    width: 4.8rem;
+  }
+
+  .btn-flipcard {
+
+    &, &:link, &:visited {
+      visibility: hidden;
+    }
+  }
+}
