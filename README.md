@@ -38,3 +38,6 @@ The data is visualized through 'weather cards' dynamically representing the weat
 ![screenshot1](./screenshots/home.jpeg)
 ![screenshot2](./screenshots/rainy.jpeg)
 ![screenshot3](./screenshots/snowy.jpeg)
+![screenshot4](./screenshots/clear.jpeg)
+![screenshot5](./screenshots/cloudy.jpeg)
+![screenshot6](./screenshots/storm.jpeg)
