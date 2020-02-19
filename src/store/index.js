@@ -8,11 +8,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentWeather: {},
-    changeCode: ''
+    changeCode: '',
+    hazards: []
   },
   mutations: {
     'GET_WEATHER' (state, cityId) {
       state.currentWeather = {}
+      state.hazards = []
 
       db.collection('weathercards').doc(cityId).get()
       .then(storedWeather => {
@@ -52,7 +54,7 @@ export default new Vuex.Store({
             return 'NNE'
           }
         }
-        let displayData = rawData => {
+        let convertData = rawData => {
           // determine day phase based on current time and sunrise/sunset
           if (rawData.sunrise * 1000 > currentTime || rawData.sunset * 1000 < currentTime ) {
             state.currentWeather.dayPhase = 'night'
@@ -77,7 +79,58 @@ export default new Vuex.Store({
           state.currentWeather.sunset = rawData.sunset.toTimeString().slice(0,5)
           state.currentWeather.uvindex = 'n/a'
 
+          checkHazard(rawData)
+
           state.changeCode = Math.random()
+        }
+        let checkHazard = rawData => {
+          // RULES FOR HAZARDOUS WEATHER
+          // min/max temperatures
+          if (rawData.tempmin < -10) {
+            state.hazards.push({
+              category: 'cold',
+              text: 'Possibility of very low temperature'
+            })
+          }
+          if (rawData.tempmax > 35) {
+            state.hazards.push({
+              category: 'heat',
+              text: 'Possibility of very hot temperature'
+            })
+          }
+          // current temperature
+          if (rawData.tempcurrent < -10) {
+            state.hazards.push({
+              category: 'cold',
+              text: 'Very low temperature'
+            })
+          } else if (rawData.tempcurrent > 35) {
+            state.hazards.push({
+              category: 'heat',
+              text: 'Very hot temperature'
+            })
+          }
+          // wind speed
+          if (rawData.windspeed > 10) {
+            state.hazards.push({
+              category: 'wind',
+              text: 'Very windy weather'
+            })
+          }
+          // UV index
+          if (rawData.uvindex > 7) {
+            state.hazards.push({
+              category: 'uv',
+              text: 'Very high UV index'
+            })
+          }
+          // condition
+          if (rawData.condition === 'Thunderstorm') {
+            state.hazards.push({
+              category: 'storm',
+              text: 'Stormy weather'
+            })
+          }
         }
         
         if (currentTime - storedWeather.data().timestamp > 1800000) {
@@ -106,16 +159,16 @@ export default new Vuex.Store({
                 .then(() => {
                   db.collection('weathercards').doc(cityId).get()
                     .then(updatedData => {
-                      displayData(updatedData.data())
+                      convertData(updatedData.data())
                     })
                 })
                 .catch(() => {
-                  displayData(storedWeather.data())
+                  convertData(storedWeather.data())
                 })
             })
-            .catch(() => displayData(storedWeather.data()))
+            .catch(() => convertData(storedWeather.data()))
         } else {
-          displayData(storedWeather.data())
+          convertData(storedWeather.data())
         }
       })
     }
@@ -132,6 +185,9 @@ export default new Vuex.Store({
     },
     changeIndicator: state => {
       return state.changeCode
+    },
+    hazards: state => {
+      return state.hazards
     }
   }
 })

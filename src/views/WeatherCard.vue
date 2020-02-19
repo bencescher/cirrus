@@ -1,6 +1,6 @@
 <template>
   <section class="card" :class="getClass()">
-    <div class="header">
+    <header class="header">
       <div class="title">
         <h3>{{ actualWeather.description }}</h3>
       </div>
@@ -10,8 +10,13 @@
       <div class="header__right">
         <p>Max<br/>{{ actualWeather.tempMax }}°C</p>
       </div>
-    </div>
-    <div class="main">
+    </header>
+    <section class="hazard">
+      <div v-for="(hazard, index) in hazards" :key="index" :hazard="hazard" class="hazard__alert">
+        <i class="fas fa-exclamation-triangle"></i> {{ hazard.text }}
+      </div>
+    </section>
+    <section class="main">
       <div class="main__side main__front">
         <h1>{{ actualWeather.tempCurrent }}°C</h1>
         <h2>{{ actualWeather.cityName }}</h2>
@@ -43,10 +48,10 @@
           <p>Sunset: {{ actualWeather.sunset }}</p>
         </div>
       </div>
-    </div>
-    <div class="footer">
+    </section>
+    <footer class="footer">
       <router-link to="/" tag="button" class="btn btn-light btn-back"><i class="fas fa-arrow-left"></i></router-link>
-    </div>
+    </footer>
   </section>
 </template>
 
@@ -55,7 +60,8 @@ export default {
   data() {
     return {
       cityId: this.$route.params.city,
-      actualWeather: {}
+      actualWeather: {},
+      hazards: []
     }
   },
   created() {
@@ -65,6 +71,7 @@ export default {
   watch: {
     '$store.getters.changeIndicator': function() {
       this.actualWeather = this.$store.getters.weather
+      this.hazards = this.$store.getters.hazards
     }
   },
   methods: {

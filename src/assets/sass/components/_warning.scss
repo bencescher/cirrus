@@ -1,0 +1,20 @@
+.hazard {
+  min-height: 6rem;
+  position: relative;
+
+  &__alert {
+    background-image: linear-gradient(to top right, rgba(gold, .35), rgba(wheat, .35));
+    border-radius: $n-borderradius;
+    cursor: default;
+    font-size: 1.2rem;
+    letter-spacing: .05rem;
+    margin: 1rem auto;
+    padding: 1rem;
+    text-align: center;
+    width: 25rem;
+
+    &:last-child {
+      margin-bottom: 3rem;
+    }
+  }
+}
