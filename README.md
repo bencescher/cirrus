@@ -33,6 +33,18 @@ The data is visualized through 'weather cards' dynamically representing the weat
 - background image
 - weather icon
 
+**Weather alerts**
+
+Warnings are displayed in case of hazardous weather conditions.
+
+The following conditions are watched:
+- current temperature
+- daily minimum temperature
+- daily maximum temperature
+- wind speed
+- UV index
+- weather condition
+
  **Example screenshots**
 
 ![screenshot1](./screenshots/home.jpeg)
