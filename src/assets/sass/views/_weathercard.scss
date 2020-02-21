@@ -118,6 +118,54 @@
   }
 }
 
+.forecast {
+  padding-top: 2.5rem;
+  position: relative;
+  text-align: center;
+
+  &__card {
+    background-color: rgba($c-light, .15);
+    border: 3px solid rgba($c-light, .15);
+    display: inline-block;
+    height: 18rem;
+    width: 12rem;
+    
+    &:not(:last-child) {
+      margin-right: 4rem;
+    }
+
+    &--morning {
+      padding-bottom: 1rem;
+      position: relative;
+
+      &::before {
+        @include centerHorizontal;
+    
+        border-bottom: .1rem solid rgba($c-light, .6);
+        bottom: 0;
+        content: "";
+        position: absolute;
+        width: 60%;
+      }
+    }
+
+    & h3 {
+      font-size: 2rem;
+      padding: 1rem;
+      position: relative;
+    }
+
+    & h4 {
+      font-size: 2.4rem;
+      padding-top: .5rem;
+    }
+
+    & h5 {
+      font-size: 1.4rem;
+    }
+  }
+}
+
 .footer {
   text-align: right;
   width: 100%;
@@ -280,6 +328,13 @@
     }
 
   }
+   .forecast {
+     margin-top: -7rem;
+
+     &__card {
+      width: 9rem;
+     }
+   }
 }
 
 @media only screen and (min-width: 769px) {
