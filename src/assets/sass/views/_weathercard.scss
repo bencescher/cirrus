@@ -61,7 +61,7 @@
   cursor: default;
   height: 30rem;
   margin: 0 auto;
-  max-width: 60rem;
+  max-width: 55rem;
   perspective: 100rem;
   position: relative;
   -moz-perspective: 100rem;
@@ -119,7 +119,7 @@
 }
 
 .forecast {
-  padding-top: 2.5rem;
+  padding-top: 4rem;
   position: relative;
   text-align: center;
 
@@ -128,7 +128,7 @@
     border: 3px solid rgba($c-light, .15);
     display: inline-block;
     height: 18rem;
-    width: 12rem;
+    width: 10.75rem;
     
     &:not(:last-child) {
       margin-right: 4rem;
@@ -150,7 +150,7 @@
     }
 
     & h3 {
-      font-size: 2rem;
+      font-size: 2rem !important;
       padding: 1rem;
       position: relative;
     }
@@ -303,7 +303,7 @@
 
     &__back {
       transform: rotateY(0);
-      margin-top: 3.6rem;
+      margin-top: 4rem;
 
       &--right {
         width: 60%;
@@ -328,13 +328,41 @@
     }
 
   }
-   .forecast {
-     margin-top: -7rem;
 
-     &__card {
-      width: 9rem;
+  .forecast {
+    margin-top: -4rem;
+    padding-top: 0;
+
+    &__card {
+      max-width: 10.5rem;
+      width: calc(25% - (6rem / 4));
+
+      &:not(:last-child) {
+        margin-right: 2rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 419px) {
+  .forecast {
+
+    &__card {
+      width: calc(50% - 4rem);
+
+     &:not(:last-child) {
+       margin-right: 0;
      }
-   }
+
+     &:nth-child(odd) {
+       margin-right: 4rem;
+     }
+
+     &:nth-child(1), &:nth-child(2) {
+       margin-bottom: 4rem;
+     }
+    }
+  }
 }
 
 @media only screen and (min-width: 769px) {
