@@ -49,6 +49,35 @@
         </div>
       </div>
     </section>
+    <section class="forecast">
+      <div v-for="(day, index) in futureWeather" :key="index" :day="day" class="forecast__card">
+        <h3>{{ day[0][0] }}</h3>
+        <div class="forecast__card--morning">
+          <h4>
+            <i v-if="day[0][1] === 'Clear'" class="fas fa-sun"></i>
+            <i v-else-if="day[0][1] === 'Clouds'" class="fas fa-cloud-sun"></i>
+            <i v-else-if="day[0][1] === 'Rain'" class="fas fa-cloud-rain"></i>
+            <i v-else-if="day[0][1] === 'Drizzle'" class="fas fa-cloud-showers-heavy"></i>
+            <i v-else-if="day[0][1] === 'Thunderstorm'" class="fas fa-bolt"></i>
+            <i v-else-if="day[0][1] === 'Fog' || day[0][1] === 'Mist' || day[0][1] === 'Haze'" class="fas fa-smog"></i>
+            <i v-else-if="day[0][1] === 'Snow'" class="far fa-snowflake"></i>
+          </h4>
+          <h5>{{ day[0][2] }} °C</h5>
+        </div>
+        <div class="forecast__card--afternoon">
+          <h4>
+            <i v-if="day[1][1] === 'Clear'" class="fas fa-sun"></i>
+            <i v-else-if="day[1][1] === 'Clouds'" class="fas fa-cloud-sun"></i>
+            <i v-else-if="day[1][1] === 'Rain'" class="fas fa-cloud-rain"></i>
+            <i v-else-if="day[1][1] === 'Drizzle'" class="fas fa-cloud-showers-heavy"></i>
+            <i v-else-if="day[1][1] === 'Thunderstorm'" class="fas fa-bolt"></i>
+            <i v-else-if="day[1][1] === 'Fog' || day[1][1] === 'Mist' || day[1][1] === 'Haze'" class="fas fa-smog"></i>
+            <i v-else-if="day[1][1] === 'Snow'" class="far fa-snowflake"></i>
+          </h4>
+          <h5>{{ day[1][2] }} °C</h5>
+        </div>
+      </div>
+    </section>
     <footer class="footer">
       <router-link to="/" tag="button" class="btn btn-light btn-back"><i class="fas fa-arrow-left"></i></router-link>
     </footer>
@@ -61,6 +90,7 @@ export default {
     return {
       cityId: this.$route.params.city,
       actualWeather: {},
+      futureWeather: [],
       hazards: []
     }
   },
@@ -71,6 +101,7 @@ export default {
   watch: {
     '$store.getters.changeIndicator': function() {
       this.actualWeather = this.$store.getters.weather
+      this.futureWeather = this.$store.getters.futureWeather
       this.hazards = this.$store.getters.hazards
     }
   },
