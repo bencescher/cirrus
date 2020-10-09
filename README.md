@@ -45,12 +45,6 @@ The following conditions are watched:
 - UV index
 - weather condition
 
-**Weather forecast**
-
-Forecasted weather data are displayed for mornings (UTC 9:00) and afternoons (UTC 15:00) for each of the next 4 days.
-
-Displayed weather data includes condition icon and estimated temperature for the given time.
-
  **Example screenshots**
 
 ![screenshot1](./screenshots/home.jpeg)
