@@ -4,7 +4,6 @@
 
 - Framework: Vue.js with Vuex and VueCLI
 - Style: CSS3 with Sass
-- Database: Firestore
 - API: OpenWeather (using axios)
 
 ## Features
@@ -27,7 +26,7 @@ Weather data is fetched from thir-party API provider 'openweathermap.org'.
 - UV index (coming soon)
 - sunrise and sunset
 
-Weather data for each city is stored in a database and will only be updated with fresh data after 30 minutes. Querrying data for a city within that time interval will read the data from the database and will not make an API call.
+Live weather data for each city is fetched through API calls.
 
 The data is visualized through 'weather cards' dynamically representing the weather conditions, such as:
 - background image
@@ -53,5 +52,3 @@ The following conditions are watched:
 ![screenshot4](./screenshots/clear.jpeg)
 ![screenshot5](./screenshots/cloudy.jpeg)
 ![screenshot6](./screenshots/storm.jpeg)
-![screenshot5](./screenshots/rainy_forecast.jpeg)
-![screenshot6](./screenshots/drizzle_forecast.jpeg)
